@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p>1. Программа, которая определяет количество слов в тексте</p>
+    <textarea type="text" id="input"></textarea>
+    <div>
+    <button onclick="CountWords();">Определить</button></div>
+    <p id="stringCount"></p>
+    <hr>
+    <p>2. Программа, в которой все слова А заменены словом В,
+    где А и В - заданные слова, возможно, различной длины. </p>
+    <span>A</span>
+    <input type="text" id="firstWord">
+    <span>B</span>
+    <input type="text" id="secondWord">
+    <div>
+    <textarea type="text" id="inputReplacement"></textarea></div>
+    <div>
+    <button onclick="ReplacementWords();">Определить</button></div>
+    <p id="stringReplacement"></p>
+    <hr>
+    <p>3. Программу, которая "сжимает" заданный текст, т.е.
+    заменяет все подряд идущие пробелы на один.</p>
+    <textarea type="text" id="inputDelete"></textarea>
+    <div>
+    <button onclick="DeleteGaps();">Определить</button></div>
+    <p id="stringDelete"></p>
+</body>
+<script>
+    function CountWords() {
+let str = document.getElementById('input').value;
+
+let count = str.match(/\p{L}+/ug).length;
+
+document.getElementById('stringCount').innerHTML = count;
+ }
+
+function ReplacementWords() {
+    let a = document.getElementById('firstWord').value;
+    let b = document.getElementById('secondWord').value;
+    let str = document.getElementById('inputReplacement').value;
+
+    let con = str.replace(new RegExp("(?<!\\p{L})" + a + "(?!\\p{L})", "ug"), b);
+
+    document.getElementById('stringReplacement').innerHTML = con;
+}
+
+function DeleteGaps() {
+let str = document.getElementById('inputDelete').value;
+let deletes = str.replace(/\s+/g, " ");
+document.getElementById('stringDelete').innerHTML = deletes; 
+}</script>
+</html>
